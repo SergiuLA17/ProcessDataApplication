@@ -4,22 +4,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
 @ToString
 @Entity
-public class Company {
+public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int idComp;
-    String nameComp;
-    String phoneComp;
-    String countryComp;
+    private int idShip;
+    private String shipName;
+    private String shipCapName;
 
-    public Company() {
+    public Ship() {
     }
 }
