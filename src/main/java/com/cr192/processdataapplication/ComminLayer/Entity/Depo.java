@@ -1,5 +1,6 @@
 package com.cr192.processdataapplication.ComminLayer.Entity;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,14 +13,13 @@ import lombok.ToString;
 @Setter
 @ToString
 @Entity
-public class Company {
+public class Depo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    int idComp;
-    String nameComp;
-    String phoneComp;
-    String countryComp;
+    int idDep;
+    String typeDep;
 
-    public Company() {
+    public Depo() {
     }
 }
