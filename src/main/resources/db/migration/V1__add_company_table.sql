@@ -7,12 +7,12 @@ CREATE TABLE if not exists `DBDeliveredProducts`.`ship`
     PRIMARY KEY (`idShip`)
 );
 
-CREATE TABLE `DBDeliveredProducts`.`document`
+CREATE TABLE `DBDeliveredProducts`.`documents`
 (
     `idDoc`           int AUTO_INCREMENT ,
-    `dateStarDelivery`  int NULL ,
-    `ShipId`          int  NULL ,
-    `dateFinishDelivery` int NULL ,
+    `dateStarDelivery`  date  NULL ,
+    `ShipId`          int  Null ,
+    `dateFinishDelivery` date NULL ,
     `starLocation`       text  NULL ,
     `finishLocation`    text  NULL ,
 
@@ -31,7 +31,7 @@ CREATE TABLE `DBDeliveredProducts`.`company`
     PRIMARY KEY (`idComp`)
 );
 
-CREATE TABLE `DBDeliveredProducts`.`container`
+CREATE TABLE `DBDeliveredProducts`.`containers`
 (
     `idCont`   int AUTO_INCREMENT,
     `serialCont` int NULL ,
@@ -40,7 +40,7 @@ CREATE TABLE `DBDeliveredProducts`.`container`
 
     PRIMARY KEY (`idCont`),
     KEY `FK_2` (`idDoc`),
-    CONSTRAINT `FK_4` FOREIGN KEY `FK_2` (`idDoc`) REFERENCES `DBDeliveredProducts`.`document` (`idDoc`),
+    CONSTRAINT `FK_4` FOREIGN KEY `FK_2` (`idDoc`) REFERENCES `DBDeliveredProducts`.`documents` (`idDoc`),
     KEY `FK_3` (`idComp`),
     CONSTRAINT `FK_5` FOREIGN KEY `FK_3` (`idComp`) REFERENCES `DBDeliveredProducts`.`company` (`idComp`)
 );
@@ -59,12 +59,12 @@ CREATE TABLE `DBDeliveredProducts`.`product`
     `idCont`            int  NULL ,
     `quantity`          int  NULL ,
     `dateOfManufacture` date  NULL ,
-    `dayToExpire`       int  NULL ,
+    `dayToExpire`       date  NULL ,
     `categProd`         int  NULL ,
 
     PRIMARY KEY (`idProd`),
     KEY `FK_4` (`idCont`),
-    CONSTRAINT `FK_3` FOREIGN KEY `FK_4` (`idCont`) REFERENCES `DBDeliveredProducts`.`container` (`idCont`),
+    CONSTRAINT `FK_3` FOREIGN KEY `FK_4` (`idCont`) REFERENCES `DBDeliveredProducts`.`containers` (`idCont`),
     KEY `FK_5` (`idDep`),
     CONSTRAINT `FK_3_1` FOREIGN KEY `FK_5` (`idDep`) REFERENCES `DBDeliveredProducts`.`depo` (`idDep`)
 );
@@ -79,7 +79,7 @@ CREATE TABLE `requestProduct`
     KEY `FK_2` (`idProd`),
     CONSTRAINT `FK_6` FOREIGN KEY `FK_2` (`idProd`) REFERENCES `DBDeliveredProducts`.`product` (`idProd`),
     KEY `FK_3` (`idDoc`),
-    CONSTRAINT `FK_7` FOREIGN KEY `FK_3` (`idDoc`) REFERENCES `DBDeliveredProducts`.`document` (`idDoc`)
+    CONSTRAINT `FK_7` FOREIGN KEY `FK_3` (`idDoc`) REFERENCES `DBDeliveredProducts`.`documents` (`idDoc`)
 );
 
 
