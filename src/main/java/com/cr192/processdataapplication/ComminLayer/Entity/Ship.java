@@ -1,15 +1,16 @@
 package com.cr192.processdataapplication.ComminLayer.Entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
+import jakarta.persistence.*;
 import lombok.*;
 
 @Getter
 @Setter
 @ToString
 @Entity
+@Table(name="ship")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,6 +18,4 @@ public class Ship {
     private String shipName;
     private String shipCapName;
 
-    public Ship() {
-    }
 }

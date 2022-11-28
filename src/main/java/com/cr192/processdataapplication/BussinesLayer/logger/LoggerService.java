@@ -1,13 +1,13 @@
 package com.cr192.processdataapplication.BussinesLayer.logger;
 
-import com.cr192.processdataapplication.PresentationLayer.controllers.MainController;
+import com.cr192.processdataapplication.PresentationLayer.controllers.ShipController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Component
 public class LoggerService implements iLoggerService {
-    private final Logger logger = LoggerFactory.getLogger(MainController.class);
+    private final Logger logger = LoggerFactory.getLogger(ShipController.class);
 
     @Override
     public void info(String text) {
