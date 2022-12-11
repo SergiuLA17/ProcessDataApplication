@@ -21,59 +21,46 @@ CREATE TABLE `DBDeliveredProducts`.`documents`
     CONSTRAINT `FK_3_2` FOREIGN KEY `FK_3` (`ShipId`) REFERENCES `DBDeliveredProducts`.`ship` (`idShip`)
 );
 
-CREATE TABLE `DBDeliveredProducts`.`company`
-(
-    `idComp`   int AUTO_INCREMENT ,
-    `nameComp` text ,
-    `phoneComp`    text ,
-    `countryComp`  text ,
-
-    PRIMARY KEY (`idComp`)
-);
 
 CREATE TABLE `DBDeliveredProducts`.`containers`
 (
-    `idCont`   int AUTO_INCREMENT,
-    `serialCont` int NULL ,
-    `idDoc`         int NULL ,
-    `idComp`        int NULL ,
+    `idCont`     int AUTO_INCREMENT,
+    `serialCont` int NULL,
+    `idDoc`      int NULL,
 
     PRIMARY KEY (`idCont`),
     KEY `FK_2` (`idDoc`),
-    CONSTRAINT `FK_4` FOREIGN KEY `FK_2` (`idDoc`) REFERENCES `DBDeliveredProducts`.`documents` (`idDoc`),
-    KEY `FK_3` (`idComp`),
-    CONSTRAINT `FK_5` FOREIGN KEY `FK_3` (`idComp`) REFERENCES `DBDeliveredProducts`.`company` (`idComp`)
+    CONSTRAINT `FK_4` FOREIGN KEY `FK_2` (`idDoc`) REFERENCES `DBDeliveredProducts`.`documents` (`idDoc`)
 );
-CREATE TABLE `DBDeliveredProducts`.`depo`
+CREATE TABLE `DBDeliveredProducts`.`depotype`
 (
     `idDep`   int AUTO_INCREMENT,
-    `typeDep` text NULL  ,
+    `typeDep` text NULL,
 
     PRIMARY KEY (`idDep`)
 );
 CREATE TABLE `DBDeliveredProducts`.`product`
 (
-    `idProd`            int AUTO_INCREMENT ,
-    `nameProd`          text  NULL ,
-    `idDep`             int  NULL ,
-    `idCont`            int  NULL ,
-    `quantity`          int  NULL ,
-    `dateOfManufacture` date  NULL ,
-    `dayToExpire`       date  NULL ,
-    `categProd`         int  NULL ,
+    `idProd`            int AUTO_INCREMENT,
+    `nameProd`          text NULL,
+    `idCont`            int  NULL,
+    `quantity`          int  NULL,
+    `dateOfManufacture` date NULL,
+    `dayToExpire`       int  NULL,
+    `categProd`         text NULL,
+    `compName`            text  NULL,
+
 
     PRIMARY KEY (`idProd`),
     KEY `FK_4` (`idCont`),
-    CONSTRAINT `FK_3` FOREIGN KEY `FK_4` (`idCont`) REFERENCES `DBDeliveredProducts`.`containers` (`idCont`),
-    KEY `FK_5` (`idDep`),
-    CONSTRAINT `FK_3_1` FOREIGN KEY `FK_5` (`idDep`) REFERENCES `DBDeliveredProducts`.`depo` (`idDep`)
+    CONSTRAINT `FK_3` FOREIGN KEY `FK_4` (`idCont`) REFERENCES `DBDeliveredProducts`.`containers` (`idCont`)
 );
-CREATE TABLE `requestProduct`
+CREATE TABLE `requestproduct`
 (
     `idReq`   int AUTO_INCREMENT,
-    `dateReq` date NULL ,
-    `idDoc`   int  NULL ,
-    `idProd`  int NULL ,
+    `dateReq` date NULL,
+    `idDoc`   int  NULL,
+    `idProd`  int  NULL,
 
     PRIMARY KEY (`idReq`),
     KEY `FK_2` (`idProd`),
