@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Getter
 @Setter
@@ -17,15 +17,15 @@ import java.sql.Date;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idProd;
     String nameProd;
-    int idDep;
     int idCont;
     int quantity;
     Date dateOfManufacture;
     int dayToExpire;
-    int categProd;
+    String categProd;
+    String compName;
 
     public Product() {
 

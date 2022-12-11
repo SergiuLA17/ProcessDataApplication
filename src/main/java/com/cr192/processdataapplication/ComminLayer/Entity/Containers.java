@@ -1,28 +1,26 @@
 package com.cr192.processdataapplication.ComminLayer.Entity;
 
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.*;
-
-import java.sql.Date;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
 @Entity
-public class RequestProduct {
+public class Containers {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int idReq;
-    Date dateReq;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int idCont;
+    int serialCont;
     int idDoc;
-    int idProd;
 
-
-    public RequestProduct() {
-
+    public Containers() {
     }
 }

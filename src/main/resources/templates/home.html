@@ -10,6 +10,13 @@
 </head>
 
 <body>
+<p>Import documets</p>
+<form th:action="@{/importDocuments}" method="post" enctype="multipart/form-data">
+    <input type="file" th:name="file" />
+    <input type="file" th:name="file" />
+    <input type="file" th:name="file" />
+    <input th:type="submit" value="Import" />
+</form>
 
 <div class="container">
 
@@ -42,3 +49,4 @@
 </body>
 
 </html>
+

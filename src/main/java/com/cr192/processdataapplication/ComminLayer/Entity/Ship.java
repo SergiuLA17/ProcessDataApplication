@@ -13,9 +13,14 @@ import lombok.*;
 @NoArgsConstructor
 public class Ship {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idShip;
     private String shipName;
     private String shipCapName;
+
+    public Ship(String shipName, String shipCapName) {
+        this.shipName = shipName;
+        this.shipCapName = shipCapName;
+    }
 
 }

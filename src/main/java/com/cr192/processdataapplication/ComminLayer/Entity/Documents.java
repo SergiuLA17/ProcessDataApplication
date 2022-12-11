@@ -7,24 +7,24 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Getter
 @Setter
 @ToString
 @Entity
-public class Document {
+public class Documents {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     int idDoc;
     Date dateStarDelivery;
     Date dateFinishDelivery;
-    int idShip;
+    int ShipId;
     String starLocation;
     String finishLocation;
 
-    public Document() {
+    public Documents() {
 
     }
 }
