@@ -5,6 +5,7 @@ target/
 .mvn/
 .idea/
 test/
+
 mvnw
 mvnw.cmd
 ProcessDataApplication.iml
