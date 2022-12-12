@@ -19,4 +19,6 @@ public class UploadProductModel {
     String CompName;
     String CompPhone;
     String CountryCompany;
+    String RecipentEmail;
+    String RecipentPhone;
 }

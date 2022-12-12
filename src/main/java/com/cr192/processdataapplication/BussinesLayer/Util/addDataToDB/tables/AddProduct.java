@@ -18,15 +18,20 @@ public class AddProduct {
     public void add(UploadProductModel documents) {
         Product product = new Product();
         product.setNameProd(documents.getNameProd());
-        product.setIdCont(daoContainer.getContainersBySerialContAndAndIdDoc(documents.getContainer(), DeliveryController.deliveryData.getIdMainDocument()).get());
+        product.setIdCont(getIdContainer(documents.getContainer()));
         product.setQuantity(documents.getQuantity());
         product.setDateOfManufacture(documents.getDateOfManufacture());
         product.setDayToExpire(documents.getDayToExpire());
         product.setCategProd(documents.getTypeProd());
         product.setCompName(documents.getCompName());
+        product.setRecipentEmail(documents.getRecipentEmail());
+        product.setRecipentPhone(documents.getRecipentPhone());
+
         daoProduct.save(product);
         System.out.println("Product: " + product + " added to DB");
         DeliveryController.deliveryData.setIdProducts(product.getIdProd());
+        System.out.println(DeliveryController.deliveryData);
+        //send email to recipent
     }
 
     public int getIdContainer(int idContainer){

@@ -58,6 +58,8 @@ public class ProcessProductList {
             case 7 -> products.get(j).setCompName(data);
             case 8 -> products.get(j).setCompPhone(data);
             case 9 -> products.get(j).setCountryCompany(data);
+            case 10 -> products.get(j).setRecipentEmail(data);
+            case 11 -> products.get(j).setRecipentPhone(data);
 
             default -> throw new IllegalStateException("Unexpected value: " + i);
         }

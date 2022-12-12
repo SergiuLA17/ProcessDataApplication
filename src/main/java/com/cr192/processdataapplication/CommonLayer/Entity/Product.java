@@ -26,6 +26,8 @@ public class Product {
     int dayToExpire;
     String categProd;
     String compName;
+    String recipentEmail;
+    String recipentPhone;
 
     public Product() {
 

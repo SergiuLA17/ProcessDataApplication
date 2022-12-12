@@ -60,6 +60,8 @@ CREATE TABLE `DBDeliveredProducts`.`product`
     `dayToExpire`       int  NULL,
     `categProd`         text NULL,
     `compName`            text  NULL,
+    `recipentEmail`            text  NULL,
+    `recipentPhone`            text  NULL,
 
 
     PRIMARY KEY (`idProd`),
