@@ -1,5 +1,6 @@
 package com.cr192.processdataapplication.controller;
 
+import com.cr192.processdataapplication.BussinesLayer.service.emailService.Email;
 import com.cr192.processdataapplication.BussinesLayer.service.processService.ProcessContainerListFile;
 import com.cr192.processdataapplication.BussinesLayer.service.processService.ProcessDocumentFIle;
 import com.cr192.processdataapplication.BussinesLayer.service.processService.ProcessProductList;
@@ -32,6 +33,8 @@ public class DeliveryController {
     private ShipRepository shipRepository;
     @Autowired
     private StockService stock;
+    @Autowired
+    private Email email;
 
     @GetMapping({"/list", "/"})
     public ModelAndView getAllEmployees() {
@@ -42,7 +45,6 @@ public class DeliveryController {
 
     @PostMapping("/importDocuments")
     public void importDocument(@RequestParam("file") ArrayList<MultipartFile> reapExcelDataFile) throws IOException, ParseException {
-        System.out.printf(reapExcelDataFile.get(0).getOriginalFilename());
         deliveryData = new Delivery();
         for (int i = 0; i < reapExcelDataFile.size(); i++) {
             if (i == 0) {
@@ -55,7 +57,6 @@ public class DeliveryController {
 
         }
         stock.add(deliveryData);
-
-
+        email.send();
     }
 }

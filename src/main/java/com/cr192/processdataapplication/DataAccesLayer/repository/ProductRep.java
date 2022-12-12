@@ -12,4 +12,11 @@ public interface ProductRep extends CrudRepository<Product, Integer> {
 
     @Query("select pr.categProd from Product as pr where  pr.idProd = ?1")
     Optional<String> getCategoryProduct(int categProd);
+
+    @Query("select pr.recipentEmail from Product as pr where  pr.idProd = ?1")
+    Optional<String> getReipentEmail(int id);
+
+    @Query("select pr.recipentPhone from Product as pr where  pr.idProd = ?1")
+    Optional<String> getReipentPhone(int id);
+
 }
