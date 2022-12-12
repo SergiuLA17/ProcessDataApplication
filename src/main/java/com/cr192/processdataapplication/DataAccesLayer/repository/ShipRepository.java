@@ -1,13 +1,9 @@
 package com.cr192.processdataapplication.DataAccesLayer.repository;
 
-import com.cr192.processdataapplication.ComminLayer.Entity.Ship;
-import org.springframework.data.jpa.repository.JpaRepository;
+import com.cr192.processdataapplication.CommonLayer.Entity.Ship;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.QueryHints;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import com.cr192.processdataapplication.ComminLayer.Entity.Ship;
 
 import java.util.Optional;
 

@@ -1,4 +1,4 @@
-package com.cr192.processdataapplication.ComminLayer.Models.UploadModels;
+package com.cr192.processdataapplication.CommonLayer.Models.UploadModels;
 
 import lombok.Data;
 import lombok.Getter;
@@ -14,10 +14,10 @@ import java.util.Date;
 public class UploadDocumentModel {
     private Date dateStarDelivery;
     private Date dateFinishDelivery;
-    private String starLocation;
-    private String finishLocation;
     private String shipName;
     private String shipCapName;
+    private String PortNameStart;
+    private String PortNameFinish;
 
     public UploadDocumentModel() {
     }

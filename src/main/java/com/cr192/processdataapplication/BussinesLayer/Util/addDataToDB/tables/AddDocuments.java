@@ -1,10 +1,11 @@
 package com.cr192.processdataapplication.BussinesLayer.Util.addDataToDB.tables;
 
-import com.cr192.processdataapplication.ComminLayer.Entity.Documents;
-import com.cr192.processdataapplication.ComminLayer.Entity.Ship;
-import com.cr192.processdataapplication.DataAccesLayer.DAO.DAOdocument;
-import com.cr192.processdataapplication.DataAccesLayer.DAO.DAOship;
-import com.cr192.processdataapplication.ComminLayer.Models.UploadModels.UploadDocumentModel;
+import com.cr192.processdataapplication.CommonLayer.Entity.Documents;
+import com.cr192.processdataapplication.CommonLayer.Entity.Ship;
+import com.cr192.processdataapplication.CommonLayer.Models.UploadModels.UploadDocumentModel;
+import com.cr192.processdataapplication.DataAccesLayer.repository.DocumentRep;
+import com.cr192.processdataapplication.DataAccesLayer.repository.PortsRep;
+import com.cr192.processdataapplication.DataAccesLayer.repository.ShipRepository;
 import com.cr192.processdataapplication.controller.DeliveryController;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,22 +13,24 @@ import org.springframework.stereotype.Component;
 @Component
 public class AddDocuments implements iAdd {
     @Autowired
-    private DAOship daoShip;
+    private ShipRepository daoShip;
     @Autowired
-    private DAOdocument daoDocument;
+    private PortsRep daoPorts;
+    @Autowired
+    private DocumentRep daoDocument;
 
     public void add(UploadDocumentModel document) {
         Documents sqlDoc = new Documents();
         sqlDoc.setDateStarDelivery(document.getDateStarDelivery());
+        sqlDoc.setIdPortNameStart(daoPorts.getIdPortByNamePort(document.getPortNameStart()).get());
+        sqlDoc.setIdPortNameFinish(daoPorts.getIdPortByNamePort(document.getPortNameStart()).get());
         sqlDoc.setDateFinishDelivery(document.getDateFinishDelivery());
-        sqlDoc.setStarLocation(document.getStarLocation());
-        sqlDoc.setFinishLocation(document.getFinishLocation());
         if(checkIfShipExist(document.getShipName())){
             System.out.println("Ship exist in database");
             sqlDoc.setShipId(daoShip.getShipIdByShipName(document.getShipName()).get());
         }else {
             Ship ship = new Ship(document.getShipName(), document.getShipCapName());
-            daoShip.saveShip(ship);
+            daoShip.save(ship);
             System.out.println("The ship was added in database: " + ship);
             sqlDoc.setShipId(daoShip.getShipIdByShipName(document.getShipName()).get());
         }

@@ -1,6 +1,6 @@
 package com.cr192.processdataapplication.DataAccesLayer.repository;
 
-import com.cr192.processdataapplication.ComminLayer.Entity.Containers;
+import com.cr192.processdataapplication.CommonLayer.Entity.Containers;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

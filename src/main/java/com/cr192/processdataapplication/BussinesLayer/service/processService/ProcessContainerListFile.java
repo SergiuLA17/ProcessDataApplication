@@ -1,7 +1,7 @@
-package com.cr192.processdataapplication.BussinesLayer.service;
+package com.cr192.processdataapplication.BussinesLayer.service.processService;
 
-import com.cr192.processdataapplication.ComminLayer.Entity.Containers;
-import com.cr192.processdataapplication.DataAccesLayer.DAO.DAOcontainer;
+import com.cr192.processdataapplication.CommonLayer.Entity.Containers;
+import com.cr192.processdataapplication.DataAccesLayer.repository.ContainerRep;
 import com.cr192.processdataapplication.controller.DeliveryController;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -16,7 +16,7 @@ import java.text.ParseException;
 @Component
 public class ProcessContainerListFile {
     @Autowired
-    private DAOcontainer daoContainer;
+    private ContainerRep daoContainer;
 
     private void readFile(MultipartFile reapExcelDataFile) throws IOException, ParseException {
         XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());

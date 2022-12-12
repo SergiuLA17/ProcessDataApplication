@@ -15,6 +15,13 @@ CREATE TABLE `DBDeliveredProducts`.`stock`
     CONSTRAINT `FK_20` FOREIGN KEY `FK_5` (`idDoc`) REFERENCES `DBDeliveredProducts`.`documents` (`idDoc`)
 );
 
+
+
 insert into depotype (typeDep) values ('fruit-vegetable');
 insert into depotype (typeDep) values ('electronic');
 insert into depotype (typeDep) values ('default');
+
+insert ports (namePort,locationPort,phonePort) values ('portName1', 'countryName1', 'cityName1');
+insert ports (namePort,locationPort,phonePort) values ('portName2', 'countryName2', 'cityName2');
+insert ports (namePort,locationPort,phonePort) values ('portName3', 'countryName3', 'cityName3');
+insert ports (namePort,locationPort,phonePort) values ('portName4', 'countryName4', 'cityName4');

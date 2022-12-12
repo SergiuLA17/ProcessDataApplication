@@ -1,7 +1,7 @@
-package com.cr192.processdataapplication.BussinesLayer.service;
+package com.cr192.processdataapplication.BussinesLayer.service.processService;
 
 import com.cr192.processdataapplication.BussinesLayer.Util.addDataToDB.AddingService;
-import com.cr192.processdataapplication.ComminLayer.Models.UploadModels.UploadDocumentModel;
+import com.cr192.processdataapplication.CommonLayer.Models.UploadModels.UploadDocumentModel;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -45,8 +45,8 @@ public class ProcessDocumentFIle {
                 uploadDocumentModel.setDateStarDelivery(new SimpleDateFormat("dd/MM/yyyy").parse(data));
             }
             case 1 -> uploadDocumentModel.setDateFinishDelivery(new SimpleDateFormat("dd/MM/yyyy").parse(data));
-            case 2 -> uploadDocumentModel.setStarLocation(data);
-            case 3 -> uploadDocumentModel.setFinishLocation(data);
+            case 2 -> uploadDocumentModel.setPortNameStart(data);
+            case 3 -> uploadDocumentModel.setPortNameFinish(data);
             case 4 -> uploadDocumentModel.setShipName(data);
             case 5 -> uploadDocumentModel.setShipCapName(data);
 

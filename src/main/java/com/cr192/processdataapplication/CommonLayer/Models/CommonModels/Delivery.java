@@ -1,7 +1,6 @@
-package com.cr192.processdataapplication.ComminLayer.Models.CommonModels;
+package com.cr192.processdataapplication.CommonLayer.Models.CommonModels;
 
 
-import lombok.Data;
 import lombok.ToString;
 
 import java.util.ArrayList;

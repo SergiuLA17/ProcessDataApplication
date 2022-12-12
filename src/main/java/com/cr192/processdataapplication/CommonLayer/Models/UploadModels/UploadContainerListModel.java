@@ -1,4 +1,4 @@
-package com.cr192.processdataapplication.ComminLayer.Models.UploadModels;
+package com.cr192.processdataapplication.CommonLayer.Models.UploadModels;
 
 public class UploadContainerListModel {
     private int idContainer;

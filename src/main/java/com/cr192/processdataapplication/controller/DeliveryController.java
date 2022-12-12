@@ -1,14 +1,11 @@
 package com.cr192.processdataapplication.controller;
 
-import com.cr192.processdataapplication.BussinesLayer.service.ProcessContainerListFile;
-import com.cr192.processdataapplication.BussinesLayer.service.ProcessDocumentFIle;
-import com.cr192.processdataapplication.BussinesLayer.service.ProcessProductList;
-import com.cr192.processdataapplication.ComminLayer.Entity.Stock;
-import com.cr192.processdataapplication.ComminLayer.Models.CommonModels.Delivery;
-import com.cr192.processdataapplication.DataAccesLayer.DAO.DAOstock;
-import com.cr192.processdataapplication.DataAccesLayer.repository.ProductRep;
+import com.cr192.processdataapplication.BussinesLayer.service.processService.ProcessContainerListFile;
+import com.cr192.processdataapplication.BussinesLayer.service.processService.ProcessDocumentFIle;
+import com.cr192.processdataapplication.BussinesLayer.service.processService.ProcessProductList;
+import com.cr192.processdataapplication.BussinesLayer.service.stockService.StockService;
+import com.cr192.processdataapplication.CommonLayer.Models.CommonModels.Delivery;
 import com.cr192.processdataapplication.DataAccesLayer.repository.ShipRepository;
-import com.cr192.processdataapplication.DataAccesLayer.repository.TypeDepRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.io.IOException;
-import java.sql.Date;
 import java.text.ParseException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -36,11 +31,7 @@ public class DeliveryController {
     @Autowired
     private ShipRepository shipRepository;
     @Autowired
-    private TypeDepRep typeDepRep;
-    @Autowired
-    private ProductRep productRep;
-    @Autowired
-    private DAOstock daoStock;
+    private StockService stock;
 
     @GetMapping({"/list", "/"})
     public ModelAndView getAllEmployees() {
@@ -51,6 +42,7 @@ public class DeliveryController {
 
     @PostMapping("/importDocuments")
     public void importDocument(@RequestParam("file") ArrayList<MultipartFile> reapExcelDataFile) throws IOException, ParseException {
+        System.out.printf(reapExcelDataFile.get(0).getOriginalFilename());
         deliveryData = new Delivery();
         for (int i = 0; i < reapExcelDataFile.size(); i++) {
             if (i == 0) {
@@ -62,20 +54,7 @@ public class DeliveryController {
             }
 
         }
-
-        for (int i = 0; i < deliveryData.getIdProducts().size(); i++) {
-            Stock stock = new Stock();
-            stock.setDate(LocalDateTime.now());
-            stock.setIdDoc(deliveryData.getIdMainDocument());
-            stock.setIdProd(deliveryData.getIdProducts().get(i));
-            int idProduct = deliveryData.getIdProducts().get(i);
-            String categProd = productRep.getIdProdByCategProd(idProduct).get();
-            int idDep = typeDepRep.getTypeDepositsByNameDeposit(categProd).get();
-            stock.setIdDep(idDep);
-            daoStock.save(stock);
-            System.out.println("Prdoduct was added to stock:" + stock);
-        }
-
+        stock.add(deliveryData);
 
 
     }

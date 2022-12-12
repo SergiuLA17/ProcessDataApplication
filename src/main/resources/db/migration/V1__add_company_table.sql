@@ -6,19 +6,30 @@ CREATE TABLE if not exists `DBDeliveredProducts`.`ship`
 
     PRIMARY KEY (`idShip`)
 );
+CREATE TABLE `DBDeliveredProducts`.`ports`
+(   `idPort`   int AUTO_INCREMENT,
+    `namePort`     text NULL ,
+    `locationPort`  text NULL ,
+    `phonePort`     text NULL ,
+    PRIMARY KEY (`idPort`)
+);
 
 CREATE TABLE `DBDeliveredProducts`.`documents`
 (
     `idDoc`           int AUTO_INCREMENT ,
     `dateStarDelivery`  date  NULL ,
     `ShipId`          int  Null ,
+    `idPortNameStart`  int  Null ,
+    `idPortNameFinish` int  Null ,
     `dateFinishDelivery` date NULL ,
-    `starLocation`       text  NULL ,
-    `finishLocation`    text  NULL ,
 
     PRIMARY KEY (`idDoc`),
     KEY `FK_3` (`ShipId`),
-    CONSTRAINT `FK_3_2` FOREIGN KEY `FK_3` (`ShipId`) REFERENCES `DBDeliveredProducts`.`ship` (`idShip`)
+    CONSTRAINT `FK_3_2` FOREIGN KEY `FK_3` (`ShipId`) REFERENCES `DBDeliveredProducts`.`ship` (`idShip`),
+    KEY `FK_12` (`idPortNameStart`),
+    CONSTRAINT `FK_21` FOREIGN KEY `FK_12` (`idPortNameStart`) REFERENCES `DBDeliveredProducts`.`ports` (`idPort`),
+    KEY `FK_13` (`idPortNameFinish`),
+    CONSTRAINT `FK_22` FOREIGN KEY `FK_13` (`idPortNameFinish`) REFERENCES `DBDeliveredProducts`.`ports` (`idPort`)
 );
 
 

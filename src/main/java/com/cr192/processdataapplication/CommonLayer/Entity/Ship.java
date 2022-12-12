@@ -1,4 +1,4 @@
-package com.cr192.processdataapplication.ComminLayer.Entity;
+package com.cr192.processdataapplication.CommonLayer.Entity;
 
 
 import jakarta.persistence.*;

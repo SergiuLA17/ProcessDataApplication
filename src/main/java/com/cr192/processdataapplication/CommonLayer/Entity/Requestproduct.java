@@ -1,5 +1,4 @@
-package com.cr192.processdataapplication.ComminLayer.Entity;
-
+package com.cr192.processdataapplication.CommonLayer.Entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,24 +6,23 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Getter
 @Setter
 @ToString
 @Entity
-public class Documents {
+public class Requestproduct {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    int idReq;
+    Date dateReq;
     int idDoc;
-    Date dateStarDelivery;
-    Date dateFinishDelivery;
-    int ShipId;
-    String starLocation;
-    String finishLocation;
+    int idProd;
 
-    public Documents() {
+
+    public Requestproduct() {
 
     }
 }

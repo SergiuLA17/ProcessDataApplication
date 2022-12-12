@@ -1,7 +1,7 @@
-package com.cr192.processdataapplication.BussinesLayer.service;
+package com.cr192.processdataapplication.BussinesLayer.service.processService;
 
 import com.cr192.processdataapplication.BussinesLayer.Util.addDataToDB.AddingService;
-import com.cr192.processdataapplication.ComminLayer.Models.UploadModels.UploadProductModel;
+import com.cr192.processdataapplication.CommonLayer.Models.UploadModels.UploadProductModel;
 import com.cr192.processdataapplication.DataAccesLayer.repository.ShipRepository;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;

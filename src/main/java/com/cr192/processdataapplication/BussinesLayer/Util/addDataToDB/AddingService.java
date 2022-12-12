@@ -1,10 +1,9 @@
 package com.cr192.processdataapplication.BussinesLayer.Util.addDataToDB;
 
-import com.cr192.processdataapplication.ComminLayer.Entity.Product;
-import com.cr192.processdataapplication.ComminLayer.Models.UploadModels.UploadDocumentModel;
+import com.cr192.processdataapplication.CommonLayer.Models.UploadModels.UploadDocumentModel;
 import com.cr192.processdataapplication.BussinesLayer.Util.addDataToDB.tables.AddDocuments;
 import com.cr192.processdataapplication.BussinesLayer.Util.addDataToDB.tables.AddProduct;
-import com.cr192.processdataapplication.ComminLayer.Models.UploadModels.UploadProductModel;
+import com.cr192.processdataapplication.CommonLayer.Models.UploadModels.UploadProductModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
