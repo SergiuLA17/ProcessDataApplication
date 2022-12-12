@@ -5,6 +5,7 @@ target/
 .mvn/
 .idea/
 test/
+lib/
 
 mvnw
 mvnw.cmd
