@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 
 @Component
@@ -18,8 +19,8 @@ public class ProcessContainerListFile {
     @Autowired
     private ContainerRep daoContainer;
 
-    private void readFile(MultipartFile reapExcelDataFile) throws IOException, ParseException {
-        XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
+    private void readFile(InputStream reapExcelDataFile) throws IOException, ParseException {
+        XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile);
         XSSFSheet worksheet = workbook.getSheetAt(0);
 
         int numberOfColumns = worksheet.getRow(0).getPhysicalNumberOfCells();
@@ -41,7 +42,7 @@ public class ProcessContainerListFile {
             }
     }
 
-    public void process(MultipartFile reapExcelDataFile) throws IOException, ParseException {
+    public void process(InputStream reapExcelDataFile) throws IOException, ParseException {
         readFile(reapExcelDataFile);
     }
 }

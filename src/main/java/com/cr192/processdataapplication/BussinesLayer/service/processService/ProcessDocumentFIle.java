@@ -7,9 +7,8 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
-
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -19,8 +18,9 @@ public class ProcessDocumentFIle {
     private AddingService addingService;
     private UploadDocumentModel uploadDocumentModel;
 
-    private void readFile(MultipartFile reapExcelDataFile) throws IOException, ParseException {
-        XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
+    private void readFile(InputStream reapExcelDataFile) throws IOException, ParseException {
+        System.out.println(reapExcelDataFile);
+        XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile);
         XSSFSheet worksheet = workbook.getSheetAt(0);
 
         int numberOfColumns = worksheet.getRow(0).getPhysicalNumberOfCells();
@@ -33,7 +33,6 @@ public class ProcessDocumentFIle {
                 processDocument(row.getCell(j).toString(), i-1);
             }
         }
-
         addingService.addDocument(uploadDocumentModel);
     }
 
@@ -55,7 +54,7 @@ public class ProcessDocumentFIle {
     }
 
 
-    public void process(MultipartFile reapExcelDataFile) throws IOException, ParseException {
+    public void process(InputStream reapExcelDataFile) throws IOException, ParseException {
         readFile(reapExcelDataFile);
     }
 }

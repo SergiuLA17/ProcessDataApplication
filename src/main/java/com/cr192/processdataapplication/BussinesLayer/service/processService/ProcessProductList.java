@@ -8,9 +8,9 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,9 +24,9 @@ public class ProcessProductList {
     private AddingService addingService;
     ArrayList<UploadProductModel> products = new ArrayList<>();
 
-    private void readFile(MultipartFile reapExcelDataFile) throws IOException, ParseException {
+    private void readFile(InputStream reapExcelDataFile) throws IOException, ParseException {
         products.clear();
-        XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile.getInputStream());
+        XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile);
         XSSFSheet worksheet = workbook.getSheetAt(0);
 
         int numberOfColumns = worksheet.getRow(0).getPhysicalNumberOfCells();
@@ -71,7 +71,7 @@ public class ProcessProductList {
         }
     }
 
-    public void process(MultipartFile reapExcelDataFile) throws IOException, ParseException {
+    public void process(InputStream reapExcelDataFile) throws IOException, ParseException {
         readFile(reapExcelDataFile);
         addDataToDB();
 

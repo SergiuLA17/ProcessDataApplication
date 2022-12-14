@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css?family=Eczar|Work+Sans");
+/* colors */
+/* fonts */
+
+button {
+  margin: 0 auto;
+  display: block;
+  padding: 10px 30px;
+  background: #fff;
+  outline: none;
+  border: none;
+  font-family: "Work Sans", serif;
+  font-weight: bolder;
+  transition: 0.2s;
+}
+button:active {
+  background-color: #ccc;
+}
+
+section {
+  min-height: 100px;
+  max-width: 400px;
+  background-color: #fff;
+  margin: 40px auto;
+  -webkit-box-shadow: 10px 10px 28px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 28px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 28px 1px rgba(0, 0, 0, 0.75);
+  position: relative;
+}
+section .fa-times {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  font-size: 1.3em;
+  cursor: pointer;
+}
+section .icon {
+  padding: 18px;
+  margin-right: 10px;
+  float: left;
+}
+section .icon i {
+  font-size: 4em;
+  color: #fff;
+}
+section h1,
+section p {
+  font-family: "Work Sans";
+}
+section h1 {
+  font-size: 0.8em;
+  font-weight: bolder;
+  padding-top: 15px;
+  padding-bottom: 5px;
+}
+section p {
+  font-size: 0.8em;
+  padding-top: 6px;
+}
+
+#success .icon {
+  background-color: #29d885;
+}
+
+#fail .icon {
+  background-color: #e44b5e;
+}
+
+@media (min-width: 576px) {
+  section h1 {
+    font-size: 1em;
+  }
+  section p {
+    font-size: 0.9em;
+  }
+}
+
+ ul {
+   list-style-type: none;
+   margin: 0;
+   padding: 0;
+   overflow: hidden;
+   background-color: #333;
+ }
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
