@@ -147,6 +147,7 @@
             <name>Spring Snapshots</name>
             <url>https://repo.spring.io/snapshot</url>
             <releases>
+                     
                 <enabled>false</enabled>
             </releases>
         </pluginRepository>
