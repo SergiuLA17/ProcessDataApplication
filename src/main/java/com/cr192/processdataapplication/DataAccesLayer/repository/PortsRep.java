@@ -1,6 +1,6 @@
 package com.cr192.processdataapplication.DataAccesLayer.repository;
 
-import com.cr192.processdataapplication.CommonLayer.Entity.Ship;
+import com.cr192.processdataapplication.CommonLayer.Entity.Ports;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -8,11 +8,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface ShipRepository extends CrudRepository<Ship, Integer> {
+public interface PortsRep extends CrudRepository<Ports, Integer> {
 
-
-  @Query("select s.idShip from Ship as s where s.shipName = ?1")
-  Optional<Integer> getShipIdByShipName(String shipName);
-
-
+    @Query("select p.idPort from Ports p where p.namePort = ?1")
+    Optional<Integer> getIdPortByNamePort(String namePort);
 }
+

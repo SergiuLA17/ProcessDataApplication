@@ -5,6 +5,8 @@ target/
 .mvn/
 .idea/
 test/
+lib/
+
 mvnw
 mvnw.cmd
 ProcessDataApplication.iml
@@ -34,3 +36,4 @@ build/
 ### VS Code ###
 .vscode/
 .DS_Store
+/lib/

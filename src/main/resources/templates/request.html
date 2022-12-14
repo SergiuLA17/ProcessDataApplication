@@ -1,0 +1,112 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Spring Boot Thymeleaf Hello World Example</title>
+    <link rel="stylesheet" href="/css/help.css" media="screen">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/help.css" media="screen">
+</head>
+<body>
+<ul>
+    <li><a href="http://localhost:8080/upload">Link pentru stocare</a></li>
+    <li><a href="http://localhost:8080/request">Link pentru request</a></li>
+    <li><a href="#contact">Link pentru admin</a></li>
+</ul>
+
+<div class="container">
+    <div class="card">
+        <form action="request" method="post" id="form">
+            <input placeholder="product id" type="text" name="someName"/>
+            <button type="submit" >Send Request</button>
+        </form>
+        <a th:text="'Product id: ' + ${productID}"></a>
+        <a th:text="'Product name: ' + ${productName}"></a>
+        <a th:text="'Quantity: ' +${quantity}"></a>
+        <a th:text="'Storage: '+ ${storage}"></a>
+        <a th:text="'Contact: ' +${contact}"></a>
+    </div>
+
+</div>
+<script src="https://use.fontawesome.com/80976cfcfc.js"></script>
+<section id="success">
+    <div class="icon">
+        <i class="fa fa-smile-o" aria-hidden="true"></i>
+    </div>
+    <h1>Introduceti id productului care lati primit pe email-ul dumnevoastra.</h1>
+    <i class="fa fa-times succ" aria-hidden="true"></i>
+</section>
+<button id="again">Help</button>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".fail").on("click", function () {
+            $("#fail h1,#fail p,#fail .fail").css({display: "none"});
+
+            $("#fail").animate(
+                {
+                    width: "0"
+                },
+                250,
+                function () {
+                    $("#fail .icon").animate(
+                        {
+                            borderRadius: "50%"
+                        },
+                        250,
+                        function () {
+                            $("#fail .icon").animate(
+                                {
+                                    opacity: 0
+                                },
+                                250
+                            );
+                        }
+                    );
+                }
+            );
+        });
+        $(".succ").on("click", function () {
+            $("#success h1,#success p,#success .succ").css({display: "none"});
+
+            $("#success").animate(
+                {
+                    width: "0"
+                },
+                250,
+                function () {
+                    $("#success .icon").animate(
+                        {
+                            borderRadius: "50%"
+                        },
+                        250,
+                        function () {
+                            $("#success .icon").animate(
+                                {
+                                    opacity: 0
+                                },
+                                250
+                            );
+                        }
+                    );
+                }
+            );
+        });
+        $("button").on("click", function () {
+            $("section").css({width: "400px"});
+            $("section h1,section p,section i").css({display: "block"});
+            $("section .icon").css({
+                borderRadius: "0",
+                opacity: 1
+            });
+        });
+    });
+
+</script>
+
+</body>
+</html>
