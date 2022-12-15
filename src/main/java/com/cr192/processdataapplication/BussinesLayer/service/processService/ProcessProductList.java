@@ -3,6 +3,7 @@ package com.cr192.processdataapplication.BussinesLayer.service.processService;
 import com.cr192.processdataapplication.BussinesLayer.Util.addDataToDB.AddingService;
 import com.cr192.processdataapplication.CommonLayer.Models.UploadModels.UploadProductModel;
 import com.cr192.processdataapplication.DataAccesLayer.repository.ShipRepository;
+import org.apache.poi.EmptyFileException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -25,20 +26,24 @@ public class ProcessProductList {
     ArrayList<UploadProductModel> products = new ArrayList<>();
 
     private void readFile(InputStream reapExcelDataFile) throws IOException, ParseException {
-        products.clear();
-        XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile);
-        XSSFSheet worksheet = workbook.getSheetAt(0);
+        try {
+            products.clear();
+            XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile);
+            XSSFSheet worksheet = workbook.getSheetAt(0);
 
-        int numberOfColumns = worksheet.getRow(0).getPhysicalNumberOfCells();
+            int numberOfColumns = worksheet.getRow(0).getPhysicalNumberOfCells();
 
-        int numberOfRows = worksheet.getPhysicalNumberOfRows();
+            int numberOfRows = worksheet.getPhysicalNumberOfRows();
 
-        for (int i = 1; i < numberOfRows; i++) {
-            XSSFRow row = worksheet.getRow(i);
+            for (int i = 1; i < numberOfRows; i++) {
+                XSSFRow row = worksheet.getRow(i);
 
-            for (int j = 1; j < numberOfColumns; j++) {
-                createDocuments(row.getCell(j).toString(), j-1, i-1);
+                for (int j = 1; j < numberOfColumns; j++) {
+                    createDocuments(row.getCell(j).toString(), j-1, i-1);
+                }
             }
+        } catch (IOException | ParseException | EmptyFileException e) {
+            throw new RuntimeException(e);
         }
     }
 

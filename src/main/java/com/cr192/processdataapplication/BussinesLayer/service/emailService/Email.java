@@ -17,7 +17,7 @@ import java.util.Properties;
 public class Email {
     private final String username = "deliveryd@internet.ru";//change accordingly
     private final String password = "wArzqm5QQJ218MExUWQ7";//change accordingly
-    private String from = "deliveryd@internet.ru";//change accordingly
+    private final String from = "deliveryd@internet.ru";//change accordingly
     private String host = "smtp.mail.ru";
     private Properties props = new Properties();
     @Autowired
@@ -49,12 +49,12 @@ public class Email {
             message.setRecipients(Message.RecipientType.TO,
                     InternetAddress.parse(to));
 
-            message.setSubject("Testing Subject");
+            message.setSubject("Delivery");
 
-            String text = "Good afternoon, your product is on the way, estimated delivery date is XXX."
-                    + documentRep.getDataDocByIdDoc(DeliveryController.deliveryData.getIdMainDocument()).get() +
-                    "To view information about your product, storage location, " +
-                    "go to the site XXX and enter the code" + productCode + " or call " + productRep.getReipentPhone(productCode).get() + ". Have a good day :)";
+            String text = "Good afternoon, your product is on the way, estimated delivery date is "
+                    + documentRep.getDataDocByIdDoc(DeliveryController.deliveryData.getIdMainDocument()).get().toString().substring(0,10) +
+                    ". To view information about your product, storage location, " +
+                    "go to the site http://localhost:8080/request and enter the id product: " + productCode + " or call " + productRep.getReipentPhone(productCode).get() + ". Have a good day :)";
             message.setText(text);
 
             Transport.send(message);

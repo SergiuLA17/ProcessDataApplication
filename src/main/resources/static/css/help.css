@@ -59,7 +59,7 @@ section p {
 }
 
 #success .icon {
-  background-color: #29d885;
+  background-color: #344d40;
 }
 
 #fail .icon {
@@ -74,7 +74,6 @@ section p {
     font-size: 0.9em;
   }
 }
-
  ul {
    list-style-type: none;
    margin: 0;

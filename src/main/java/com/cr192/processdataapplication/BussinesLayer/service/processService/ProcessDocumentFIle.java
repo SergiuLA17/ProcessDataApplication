@@ -2,11 +2,13 @@ package com.cr192.processdataapplication.BussinesLayer.service.processService;
 
 import com.cr192.processdataapplication.BussinesLayer.Util.addDataToDB.AddingService;
 import com.cr192.processdataapplication.CommonLayer.Models.UploadModels.UploadDocumentModel;
+import org.apache.poi.EmptyFileException;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
@@ -19,21 +21,25 @@ public class ProcessDocumentFIle {
     private UploadDocumentModel uploadDocumentModel;
 
     private void readFile(InputStream reapExcelDataFile) throws IOException, ParseException {
-        System.out.println(reapExcelDataFile);
-        XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile);
-        XSSFSheet worksheet = workbook.getSheetAt(0);
+        try (reapExcelDataFile) {
+            System.out.println(reapExcelDataFile);
+            XSSFWorkbook workbook = new XSSFWorkbook(reapExcelDataFile);
+            XSSFSheet worksheet = workbook.getSheetAt(0);
 
-        int numberOfColumns = worksheet.getRow(0).getPhysicalNumberOfCells();
+            int numberOfColumns = worksheet.getRow(0).getPhysicalNumberOfCells();
 
-        int numberOfRows = worksheet.getPhysicalNumberOfRows();
+            int numberOfRows = worksheet.getPhysicalNumberOfRows();
 
-        for (int i = 1; i < numberOfRows; i++) {
-            XSSFRow row = worksheet.getRow(i);
-            for (int j = 1; j < numberOfColumns; j++) {
-                processDocument(row.getCell(j).toString(), i-1);
+            for (int i = 1; i < numberOfRows; i++) {
+                XSSFRow row = worksheet.getRow(i);
+                for (int j = 1; j < numberOfColumns; j++) {
+                    processDocument(row.getCell(j).toString(), i - 1);
+                }
             }
+            addingService.addDocument(uploadDocumentModel);
+        } catch (EmptyFileException e) {
+            System.out.println("No file found");
         }
-        addingService.addDocument(uploadDocumentModel);
     }
 
 
