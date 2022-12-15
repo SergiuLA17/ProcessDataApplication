@@ -11,11 +11,48 @@
 
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 </head>
+
+<style>
+    .pad {
+        background-color: #253125; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 19px 475px;
+        cursor: pointer;
+        position: center;
+        border-radius: 12px;
+    }
+
+    .download {
+        background-color: #253125; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 19px 455px;
+        cursor: pointer;
+        position: center;
+        border-radius: 12px;
+    }
+
+    .p {
+        text-align: center;
+        position: center;
+    }
+
+</style>
 <body>
 <ul>
     <li><a href="http://localhost:8080/upload">Link pentru stocare</a></li>
     <li><a href="http://localhost:8080/request">Link pentru request</a></li>
-    <li><a href="#contact">Link pentru admin</a></li>
 </ul>
 <div class="container">
     <h2 class="text-center mt-4 mb-4">Upload data in delivery data base</h2>
@@ -27,20 +64,27 @@
             <input type="file" id="excel_file1" th:name="file"/>
             <input type="file" id="excel_file2" th:name="file"/>
             <input type="file" id="excel_file3" th:name="file"/>
-            <input type="submit" value="View"/>
+                <input class="pad" type="submit" id="check" value="Upload"/>
             </form>
 
+            <a class="download" href="/template.zip" download="template">Download Template</a>
             <script src="https://use.fontawesome.com/80976cfcfc.js"></script>
             <section id="success">
                 <div class="icon">
                     <i class="fa fa-smile-o" aria-hidden="true"></i>
                 </div>
+                <br>
                 <h1>Pentru a incarca cu succes date in baza urmariti cateva pasi:</h1>
-                <p>1)Inscrieti in fisierele oferite datele corepunzatoare.</p>
-                <p>2)Incarcati fisierele in ordinea urmatoare:1 >>Document 2 >>Containers 3>>Products</p>
+                <br>
+                <br>
+                <p class="p">Descarcati template-ul de mai sus</p>
+                <p class="p">Completati template-ul cu datele dorite</p>
+                <p class="p">Uploadati template-ul in baza de date</p>
+
                 <i class="fa fa-times succ" aria-hidden="true"></i>
             </section>
             <button id="again">Help</button>
+
 
 
         </div>
@@ -203,5 +247,38 @@
     }
 
 
+</script>
+<script>
+    $("#check").click(function () {
+            const fileName1 = $("#excel_file1").val();
+            const lengthDoc = fileName1.substring(12, fileName1.length)
 
+            const fileName2 = $("#excel_file2").val();
+            const lengthCont = fileName2.substring(12, fileName2.length)
+
+            const fileName3 = $("#excel_file3").val();
+            const lengthProd = fileName3.substring(12, fileName3.length)
+
+            const files = [lengthDoc, lengthCont, lengthProd];
+
+
+            if (files[0] === "document.xlsx" && fileName1.length > 0) {
+                console.log("merge");
+            } else
+                alert("Error document field. No file selected. Or no file name compatible. File uploaded: " + lengthDoc);
+
+
+            if (files[1] === "containers.xlsx" && fileName2.length > 0) {
+                console.log("merge");
+            } else
+                alert("Error containers field. No file selected. Or no file name compatible. File uploaded: " + lengthCont);
+
+
+            if (files[2] === "products.xlsx" && fileName3.length > 0) {
+                console.log("merge");
+            } else
+                alert("Error products field. No file selected. Or no file name compatible. File uploaded: " + lengthProd);
+
+        }
+    )
 </script>

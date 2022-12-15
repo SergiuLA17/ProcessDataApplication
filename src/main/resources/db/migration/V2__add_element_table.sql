@@ -21,7 +21,7 @@ insert into depotype (typeDep) values ('fruit-vegetable');
 insert into depotype (typeDep) values ('electronic');
 insert into depotype (typeDep) values ('default');
 
-insert ports (namePort,locationPort,phonePort) values ('portName1', 'countryName1', 'cityName1');
-insert ports (namePort,locationPort,phonePort) values ('portName2', 'countryName2', 'cityName2');
-insert ports (namePort,locationPort,phonePort) values ('portName3', 'countryName3', 'cityName3');
-insert ports (namePort,locationPort,phonePort) values ('portName4', 'countryName4', 'cityName4');
+insert ports (namePort,locationPort,phonePort) values ('portName1', 'Bremen/Bremerhaven,Germany', '+472348733');
+insert ports (namePort,locationPort,phonePort) values ('portName2', 'Algeciras, Spain', '+343244234');
+insert ports (namePort,locationPort,phonePort) values ('portName3', 'Piraeus, Greece', '+423423423');
+insert ports (namePort,locationPort,phonePort) values ('portName4', 'Long Beach, U.S.A.', '+412412121');

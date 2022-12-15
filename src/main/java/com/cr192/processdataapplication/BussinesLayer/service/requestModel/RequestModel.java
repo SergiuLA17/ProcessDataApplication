@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.Optional;
+
 
 @Service
 public class RequestModel {
@@ -26,32 +28,31 @@ public class RequestModel {
 
     public ModelAndView create(Integer id){
         ModelAndView mav = new ModelAndView("request");
-        try {
-            if (id == null){
-                mav.addObject("productID", "");
-                mav.addObject("productName", "");
-                mav.addObject("quantity", "");
-                mav.addObject("storage", "");
-                mav.addObject("contact", "");
+            if (id == null) {
+                mav.addObject("message", "Nu ati introdus id!");
+
             }else {
 
-                System.out.println(id);
-                Product product = productRep.findById(id).get();
-                Containers container = containerRep.findById(product.getIdCont()).get();
-                Documents document = documentRep.findById(container.getIdDoc()).get();
-                Ports port = portsRep.findById(document.getIdPortNameFinish()).get();
 
-                mav.addObject("productID", id);
-                mav.addObject("productName", product.getNameProd());
-                mav.addObject("quantity", product.getQuantity());
-                mav.addObject("storage", port.getLocationPort());
-                mav.addObject("contact", port.getPhonePort());
+                Optional<Product> product = productRep.findById(id);
+                if (product.isEmpty()) {
+                    mav.addObject("message", "Nu exista produs cu id: " + id + ", sau ati introdus date gresite.");
+                } else {
 
-                System.out.println("New request for product id " + id);
+                    Containers container = containerRep.findById(product.get().getIdCont()).get();
+                    Documents document = documentRep.findById(container.getIdDoc()).get();
+                    Ports port = portsRep.findById(document.getIdPortNameFinish()).get();
+                    String message = "Product:" + product.get().getNameProd() + ", quantity = " + product.get().getQuantity() + ", storage location: " + port.getLocationPort() + ", contact: " + port.getPhonePort();
+
+
+                    mav.addObject("message", message);
+//                mav.addObject("productName", product.getNameProd());
+//                mav.addObject("quantity", product.getQuantity());
+//                mav.addObject("storage", port.getLocationPort());
+//                mav.addObject("contact", port.getPhonePort());
+                }
+
             }
-        } catch (Exception e) {
-
-        }
         return mav;
     }
 

@@ -10,7 +10,7 @@ import java.util.Optional;
 @Repository
 public interface PortsRep extends CrudRepository<Ports, Integer> {
 
-    @Query("select p.idPort from Ports p where p.namePort = ?1")
+    @Query("select p.idPort from Ports p where p.locationPort = ?1")
     Optional<Integer> getIdPortByNamePort(String namePort);
 }
 

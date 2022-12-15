@@ -10,24 +10,68 @@
 
     <link rel="stylesheet" href="/css/help.css" media="screen">
 </head>
+<style>
+    .message{
+        position: center;
+        margin: 19px 200px 50px 300px;
+    }
+    .input{
+        margin: 19px 200px 50px 450px;
+        position: center;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: #f8f8f8;
+        resize: none;
+    }
+
+
+    .button {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 19px 455px;
+        cursor: pointer;
+        position: center;
+    }
+
+    .button5 {background-color: #555555;} /* Black */
+
+    .a{
+        margin: 19px 450px;
+        position: center;
+    }
+
+    .container{
+        margin: 150px 160px 20px 175px;
+        position: center;
+    }
+</style>
 <body>
 <ul>
     <li><a href="http://localhost:8080/upload">Link pentru stocare</a></li>
     <li><a href="http://localhost:8080/request">Link pentru request</a></li>
-    <li><a href="#contact">Link pentru admin</a></li>
 </ul>
 
-<div class="container">
-    <div class="card">
+
+<div class="container container">
+    <div >
         <form action="request" method="post" id="form">
-            <input placeholder="product id" type="text" name="someName"/>
-            <button type="submit" >Send Request</button>
+
+
+            <input class = "input"  placeholder="input product id" type="number" name="someName" required id="number"/>
+            <br>
+            <button class = "button button5" type="submit">Send Request</button>
+            <br>
+            <br>
         </form>
-        <a th:text="'Product id: ' + ${productID}"></a>
-        <a th:text="'Product name: ' + ${productName}"></a>
-        <a th:text="'Quantity: ' +${quantity}"></a>
-        <a th:text="'Storage: '+ ${storage}"></a>
-        <a th:text="'Contact: ' +${contact}"></a>
+            </div><a class="message" th:text="${message}"></a></div>
+
+
     </div>
 
 </div>
