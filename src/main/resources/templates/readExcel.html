@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="/css/help.css" media="screen">
-
+    <link rel="stylesheet" href="/css/footer.css" media="screen">
     <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 </head>
 
@@ -22,10 +24,13 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
-        margin: 19px 475px;
+        margin: -50px 100px -10px 1000px;
         cursor: pointer;
         position: center;
         border-radius: 12px;
+
+        left: 380px;
+        top: 171px;
     }
 
     .download {
@@ -50,7 +55,7 @@
 
 </style>
 <body>
-<ul>
+<ul class="ul2">
     <li><a href="http://localhost:8080/upload">Link pentru stocare</a></li>
     <li><a href="http://localhost:8080/request">Link pentru request</a></li>
 </ul>
@@ -91,6 +96,37 @@
     </div>
     <div id="excel_data" class="mt-5"></div>
 </div>
+<div class="footer-dark">
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">Upload data</a></li>
+                        <li><a href="#">Get data for users</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-6 col-md-3 item">
+                    <h3>Team</h3>
+                    <ul>
+                        <li><a href="#">Lungu Sergiu</a></li>
+                        <li><a href="#">Paduraru Vadim</a></li>
+                        <li><a href="#">Grosu Victor</a></li>
+                        <li><a href="#">Railean Pavel</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-6 item text">
+                    <h3>CR-192</h3>
+                    <p>Proiect de an la disciplina "Ingineria Programarii".</p>
+                </div>
+            </div>
+            <p class="copyright">CR-192 © 2022</p>
+        </div>
+    </footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -197,19 +233,19 @@
                 return false;
             }
 
-            var reader = new FileReader();
+            const reader = new FileReader();
 
             reader.readAsArrayBuffer(event.target.files[0]);
 
             reader.onload = function (event) {
 
-                var data = new Uint8Array(reader.result);
+                const data = new Uint8Array(reader.result);
 
-                var work_book = XLSX.read(data, {type: 'array'});
+                const work_book = XLSX.read(data, {type: 'array'});
 
-                var sheet_name = work_book.SheetNames;
+                const sheet_name = work_book.SheetNames;
 
-                var sheet_data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], {header: 1});
+                const sheet_data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name[0]], {header: 1});
 
                 if (sheet_data.length > 0) {
                     var table_output = '<table class="table table-striped table-bordered">';
@@ -218,9 +254,9 @@
 
                         table_output += '<tr>';
 
-                        for (var cell = 0; cell < sheet_data[row].length; cell++) {
+                        for (let cell = 0; cell < sheet_data[row].length; cell++) {
 
-                            if (row == 0) {
+                            if (row === 0) {
 
                                 table_output += '<th>' + sheet_data[row][cell] + '</th>';
 
