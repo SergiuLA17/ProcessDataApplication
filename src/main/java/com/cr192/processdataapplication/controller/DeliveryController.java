@@ -98,7 +98,7 @@ public class DeliveryController {
         }
         stock.add(deliveryData);
         email.send();
-        return "importDocuments";
+        return "succes";
 
     }
 }
